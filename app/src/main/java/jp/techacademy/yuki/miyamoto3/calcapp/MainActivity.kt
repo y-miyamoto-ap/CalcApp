@@ -23,10 +23,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v != null) {
-            if (binding.editText1.text.isNotEmpty() && binding.editText2.text.isNotEmpty()) {
+            try {
                 val number1 = binding.editText1.text.toString().toFloat()
                 val number2 = binding.editText2.text.toString().toFloat()
-
 
                 var result: Float? = null
                 when (v.id) {
@@ -45,8 +44,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     intent.putExtra("VALUE", result.toString())
                     startActivity(intent)
                 }
-            } else {
-                binding.textView.text = "数値入力なし"
+            } catch (e: Exception) {
+                binding.textView.text = "入力が不正"
             }
         }
     }
